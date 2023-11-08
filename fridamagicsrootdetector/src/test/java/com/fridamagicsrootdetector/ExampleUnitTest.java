@@ -1,4 +1,4 @@
-package com.example.fridamagicsrootdetector;
+package com.fridamagicsrootdetector;
 
 import org.junit.Test;
 
