@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "ToasterFly"
 include ':app'
 include ':ToastMylibrary'
+include ':fridamagicsrootdetector'
