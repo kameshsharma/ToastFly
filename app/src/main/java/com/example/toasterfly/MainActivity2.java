@@ -24,6 +24,7 @@ public class MainActivity2 extends AppCompatActivity {
         text1 = this.findViewById(R.id.textv1);
         Log.e("frida==>", String.valueOf(mMagiskDetector.startFridaDetection()));
         int appId = Os.getuid() % 100000;
+
         if (appId >= 10000) {
             text1.setText(mMagiskDetector.detectFrida()+"\n"+String.valueOf(mMagiskDetector.getHaveSu())+"\n "+ String.valueOf(mMagiskDetector.getHaveMagicMount())+"\n "+String.valueOf(mMagiskDetector.getHaveMagiskHide()));
             Log.e("magisk haveSu", String.valueOf(mMagiskDetector.getHaveSu()));
