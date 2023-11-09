@@ -40,7 +40,7 @@ add_library( # Sets the name of the library.
 
 
 
-
+set(OpenCV_DIR "...../OpenCV_Android/install/sdk/native/jni/abi-arm64-v8a")
 
 target_include_directories(native-lib PRIVATE arch/${ANDROID_ABI})
 
@@ -69,7 +69,12 @@ target_link_libraries( # Specifies the target library.
 
 #string(CONCAT CMAKE_BUILD_TYPE ${FLAVOR_TYPE} ${BUILD_TYPE})
 #
+#add_custom_command( TARGET native-lib
+#        POST_BUILD
+#        COMMAND "${ANDROID_TOOLCHAIN_PREFIX}strip" -R .comment -g -S -d --strip-unneeded ${CMAKE_HOME_DIRECTORY}/../../../build/intermediates/cmake/${CMAKE_BUILD_TYPE}/obj/${ANDROID_ABI}/libnative-lib.so
+#        COMMENT "Stripped native library")
+
 add_custom_command( TARGET native-lib
         POST_BUILD
-        COMMAND "${ANDROID_TOOLCHAIN_PREFIX}strip" -R .comment -g -S -d --strip-unneeded ${CMAKE_HOME_DIRECTORY}/../../../build/intermediates/cmake/${CMAKE_BUILD_TYPE}/obj/${ANDROID_ABI}/libnative-lib.so
+        COMMAND "${ANDROID_TOOLCHAIN_PREFIX}strip" -R .comment -g -S -d --strip-unneeded ${CMAKE_HOME_DIRECTORY}/../../../build/intermediates/cxx/${CMAKE_BUILD_TYPE}/6g1o2x5t/obj/${ANDROID_ABI}/libnative-lib.so
         COMMENT "Stripped native library")
