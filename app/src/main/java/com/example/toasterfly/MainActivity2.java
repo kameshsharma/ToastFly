@@ -20,6 +20,7 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         UniversalGuardOne mMagiskDetector=new UniversalGuardOne();
         text1 = this.findViewById(R.id.textv1);
         Log.e("frida==>", String.valueOf(mMagiskDetector.startFridaDetection()));
