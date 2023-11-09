@@ -17,6 +17,7 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags ""
+                arguments "-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON"
             }
         }
         ndk { abiFilters "armeabi-v7a" }
