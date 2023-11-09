@@ -69,12 +69,13 @@ target_link_libraries( # Specifies the target library.
 
 #string(CONCAT CMAKE_BUILD_TYPE ${FLAVOR_TYPE} ${BUILD_TYPE})
 #
-#add_custom_command( TARGET native-lib
-#        POST_BUILD
-#        COMMAND "${ANDROID_TOOLCHAIN_PREFIX}strip" -R .comment -g -S -d --strip-unneeded ${CMAKE_HOME_DIRECTORY}/../../../build/intermediates/cmake/${CMAKE_BUILD_TYPE}/obj/${ANDROID_ABI}/libnative-lib.so
-#        COMMENT "Stripped native library")
-
 add_custom_command( TARGET native-lib
         POST_BUILD
-        COMMAND "${ANDROID_TOOLCHAIN_PREFIX}strip" -R .comment -g -S -d --strip-unneeded ${CMAKE_HOME_DIRECTORY}/../../../build/intermediates/cxx/${CMAKE_BUILD_TYPE}/6q3t6s6y/obj/${ANDROID_ABI}/libnative-lib.so
+        COMMAND "${ANDROID_TOOLCHAIN_PREFIX}strip" -R .comment -g -S -d --strip-unneeded ${CMAKE_HOME_DIRECTORY}/../../../build/intermediates/cmake/${CMAKE_BUILD_TYPE}/obj/${ANDROID_ABI}/libnative-lib.so
         COMMENT "Stripped native library")
+
+
+#add_custom_command( TARGET native-lib
+#        POST_BUILD
+#        COMMAND "${ANDROID_TOOLCHAIN_PREFIX}strip" -R .comment -g -S -d --strip-unneeded ${CMAKE_HOME_DIRECTORY}/../../../build/intermediates/cxx/${CMAKE_BUILD_TYPE}/6q3t6s6y/obj/${ANDROID_ABI}/libnative-lib.so
+#        COMMENT "Stripped native library")
