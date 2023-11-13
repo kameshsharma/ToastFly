@@ -1,6 +1,7 @@
 package com.example.toastmylibrary;
 
 import android.content.Context;
+import android.widget.Toast;
 
 public class UniverseGuard {
 
@@ -17,19 +18,19 @@ public class UniverseGuard {
         try {
             System.loadLibrary("native-lib");
             if (detectFrida()) {
-                MyToasterMessage.s(context,"Frida Magisk Detect");
+                Toast.makeText(context,"Frida Magisk Detect",Toast.LENGTH_LONG).show();
                 abortApp();
                 return true;
             } else if (setValue(haveSu())) {
-                MyToasterMessage.s(context,"Frida Magisk Detect");
+                Toast.makeText(context,"Frida Magisk Detect",Toast.LENGTH_LONG).show();
                 abortApp();
                 return true;
             } else if (setValueMagicMount(haveMagicMount())) {
-                MyToasterMessage.s(context,"Frida Magisk Detect");
+                Toast.makeText(context,"Frida Magisk Detect",Toast.LENGTH_LONG).show();
                 abortApp();
                 return true;
             } else if (setValueMagiskHide(haveMagiskHide())) {
-                MyToasterMessage.s(context,"Frida Magisk Detect");
+                Toast.makeText(context,"Frida Magisk Detect",Toast.LENGTH_LONG).show();
                 abortApp();
                 return true;
             }
