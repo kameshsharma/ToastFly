@@ -1,5 +1,7 @@
 package com.example.toastmylibrary;
 
+import android.content.Context;
+
 public class UniverseGuard {
 
 //    static {
@@ -11,19 +13,23 @@ public class UniverseGuard {
 //    }
 
 
-    public boolean startProtectingUniverse() {
+    public boolean startProtectingUniverse(Context context) {
         try {
             System.loadLibrary("native-lib");
             if (detectFrida()) {
+                MyToasterMessage.s(context,"Frida Magisk Detect");
                 abortApp();
                 return true;
             } else if (setValue(haveSu())) {
+                MyToasterMessage.s(context,"Frida Magisk Detect");
                 abortApp();
                 return true;
             } else if (setValueMagicMount(haveMagicMount())) {
+                MyToasterMessage.s(context,"Frida Magisk Detect");
                 abortApp();
                 return true;
             } else if (setValueMagiskHide(haveMagiskHide())) {
+                MyToasterMessage.s(context,"Frida Magisk Detect");
                 abortApp();
                 return true;
             }
