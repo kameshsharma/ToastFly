@@ -27,8 +27,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility 13
-        targetCompatibility 13
+        sourceCompatibility 11
+        targetCompatibility 11
     }
     sourceSets {
         main {
@@ -36,7 +36,7 @@ android {
         }
     }
     kotlinOptions {
-        jvmTarget = '13'
+        jvmTarget = '11'
     }
     buildFeatures {
         compose true

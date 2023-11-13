@@ -21,8 +21,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility 13
-        targetCompatibility 13
+        sourceCompatibility 11
+        targetCompatibility 11
     }
     sourceSets {
         main {
