@@ -1,13 +1,45 @@
 package com.example.toasterfly;
 
-public class UniversalGuardOne {
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import android.widget.Toast;
 
+public class UniversalGuardOne {
     static {
         try {
             System.loadLibrary("native-lib");
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+
+    public boolean startProtectingUniverse(Context context) {
+        try {
+//            System.loadLibrary("native-lib");
+            if (detectFrida()) {
+                Toast.makeText(context,"Frida Magisk Detect",Toast.LENGTH_LONG).show();
+                killMonster();
+//                abortApp();
+                return true;
+            } else if (setValue(haveSu())) {
+                Toast.makeText(context,"Frida Magisk Detect",Toast.LENGTH_LONG).show();
+                killMonster();
+                return true;
+            } else if (setValueMagicMount(haveMagicMount())) {
+                Toast.makeText(context,"Frida Magisk Detect",Toast.LENGTH_LONG).show();
+                killMonster();
+                return true;
+            } else if (setValueMagiskHide(haveMagiskHide())) {
+                Toast.makeText(context,"Frida Magisk Detect",Toast.LENGTH_LONG).show();
+                killMonster();
+                return true;
+            }
+        } catch (Throwable e) {
+            return false;
+        }
+        return false;
     }
 
     public int getHaveSu() {
@@ -24,6 +56,36 @@ public class UniversalGuardOne {
 
     public boolean startFridaDetection(){
         return detectFrida();
+    }
+
+    private boolean setValue(Integer haveSu) {
+        if (haveSu == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean setValueMagicMount(Integer haveMagicMount) {
+        if (haveMagicMount >= 1) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean setValueMagiskHide(Integer magiskdHide) {
+        if (magiskdHide >= 1) {
+            return true;
+        }
+        return false;
+    }
+
+    private void killMonster() {
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+//                abortApp();
+            }
+        }, 3000);
     }
 
     native int haveSu();

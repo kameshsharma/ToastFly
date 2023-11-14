@@ -1,43 +1,61 @@
 package com.example.toastmylibrary;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Toast;
 
 public class UniverseGuard {
-
-//    static {
-//        try {
-//            System.loadLibrary("native-lib");
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//    }
+    static {
+        try {
+            System.loadLibrary("native-lib");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public boolean startProtectingUniverse(Context context) {
         try {
-            System.loadLibrary("native-lib");
+//            System.loadLibrary("native-lib");
             if (detectFrida()) {
-                Toast.makeText(context,"Frida Magisk Detect",Toast.LENGTH_LONG).show();
-                abortApp();
+                Toast.makeText(context, "Frida Magisk Detect", Toast.LENGTH_LONG).show();
+                killMonster();
+//                abortApp();
                 return true;
             } else if (setValue(haveSu())) {
-                Toast.makeText(context,"Frida Magisk Detect",Toast.LENGTH_LONG).show();
-                abortApp();
+                Toast.makeText(context, "Frida Magisk Detect", Toast.LENGTH_LONG).show();
+                killMonster();
                 return true;
             } else if (setValueMagicMount(haveMagicMount())) {
-                Toast.makeText(context,"Frida Magisk Detect",Toast.LENGTH_LONG).show();
-                abortApp();
+                Toast.makeText(context, "Frida Magisk Detect", Toast.LENGTH_LONG).show();
+                killMonster();
                 return true;
             } else if (setValueMagiskHide(haveMagiskHide())) {
-                Toast.makeText(context,"Frida Magisk Detect",Toast.LENGTH_LONG).show();
-                abortApp();
+                Toast.makeText(context, "Frida Magisk Detect", Toast.LENGTH_LONG).show();
+                killMonster();
                 return true;
             }
         } catch (Throwable e) {
             return false;
         }
         return false;
+    }
+
+    public int getHaveSu() {
+        return haveSu();
+    }
+
+    public int getHaveMagiskHide() {
+        return haveMagiskHide();
+    }
+
+    public int getHaveMagicMount() {
+        return haveMagicMount();
+    }
+
+    public boolean startFridaDetection() {
+        return detectFrida();
     }
 
     private boolean setValue(Integer haveSu) {
@@ -61,21 +79,13 @@ public class UniverseGuard {
         return false;
     }
 
-
-    public int getHaveSu() {
-        return haveSu();
-    }
-
-    public int getHaveMagiskHide() {
-        return haveMagiskHide();
-    }
-
-    public int getHaveMagicMount() {
-        return haveMagicMount();
-    }
-
-    public boolean startFridaDetection(){
-        return detectFrida();
+    private void killMonster() {
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+//                abortApp();
+            }
+        }, 3000);
     }
 
     native int haveSu();
