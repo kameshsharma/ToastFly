@@ -15,25 +15,24 @@ public class UniverseGuard {
     }
 
 
-    public boolean startProtectingUniverse(Context context) {
+    public boolean startProtectingUniverse() {
         try {
 //            System.loadLibrary("native-lib");
             if (detectFrida()) {
-                Toast.makeText(context, "Frida Magisk Detect", Toast.LENGTH_LONG).show();
-                killMonster();
-//                abortApp();
+//                Toast.makeText(context, "Frida Magisk Detect", Toast.LENGTH_LONG).show();
+//                killMonster();
                 return true;
             } else if (setValue(haveSu())) {
-                Toast.makeText(context, "Frida Magisk Detect", Toast.LENGTH_LONG).show();
-                killMonster();
+//                Toast.makeText(context, "Frida Magisk Detect", Toast.LENGTH_LONG).show();
+//                killMonster();
                 return true;
             } else if (setValueMagicMount(haveMagicMount())) {
-                Toast.makeText(context, "Frida Magisk Detect", Toast.LENGTH_LONG).show();
-                killMonster();
+//                Toast.makeText(context, "Frida Magisk Detect", Toast.LENGTH_LONG).show();
+//                killMonster();
                 return true;
             } else if (setValueMagiskHide(haveMagiskHide())) {
-                Toast.makeText(context, "Frida Magisk Detect", Toast.LENGTH_LONG).show();
-                killMonster();
+//                Toast.makeText(context, "Frida Magisk Detect", Toast.LENGTH_LONG).show();
+//                killMonster();
                 return true;
             }
         } catch (Throwable e) {
@@ -56,6 +55,10 @@ public class UniverseGuard {
 
     public boolean startFridaDetection() {
         return detectFrida();
+    }
+
+    public void protectUniverse() {
+        abortApp();
     }
 
     private boolean setValue(Integer haveSu) {
