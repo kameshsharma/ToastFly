@@ -25,11 +25,11 @@ public class MainActivity2 extends AppCompatActivity {
 //        Log.e("frida==>", String.valueOf(mMagiskDetector.startProtectingUniverse()));
         int appId = Os.getuid() % 100000;
         if (appId >= 10000) {
-            Log.e("frida==>", String.valueOf(mMagiskDetector.startProtectingUniverse(MainActivity2.this)));
+//            Log.e("frida==>", String.valueOf(mMagiskDetector.startProtectingUniverse(MainActivity2.this)));
             text1.setText(mMagiskDetector.detectFrida()+"\n"+String.valueOf(mMagiskDetector.getHaveSu())+"\n "+ String.valueOf(mMagiskDetector.getHaveMagicMount())+"\n "+String.valueOf(mMagiskDetector.getHaveMagiskHide()));
-            Log.e("magisk haveSu", String.valueOf(mMagiskDetector.getHaveSu()));
-            Log.e("magisk haveMagicMount", String.valueOf(mMagiskDetector.getHaveMagicMount()));
-            Log.e("magisk haveMagiskHide", String.valueOf(mMagiskDetector.getHaveMagiskHide()));
+//            Log.e("magisk haveSu", String.valueOf(mMagiskDetector.getHaveSu()));
+//            Log.e("magisk haveMagicMount", String.valueOf(mMagiskDetector.getHaveMagicMount()));
+//            Log.e("magisk haveMagiskHide", String.valueOf(mMagiskDetector.getHaveMagiskHide()));
         }
 
 //        UniversalGuardOne mMagiskDetector=new UniversalGuardOne();
