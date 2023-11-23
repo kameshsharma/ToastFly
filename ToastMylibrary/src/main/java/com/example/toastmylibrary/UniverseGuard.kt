@@ -9,7 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-object UniverseGuard {
+ class UniverseGuard {
     private val _isLibraryLoaded = MutableLiveData<Boolean>()
     val isLibraryLoaded: LiveData<Boolean> get() = _isLibraryLoaded
     init {

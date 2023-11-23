@@ -21,17 +21,17 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        UniversalGuardOne mMagiskDetector=new UniversalGuardOne;
+        UniversalGuardOne mMagiskDetector = new UniversalGuardOne();
         text1 = this.findViewById(R.id.textv1);
 //        Log.e("frida==>", String.valueOf(mMagiskDetector.startProtectingUniverse()));
         int appId = Os.getuid() % 100000;
         if (appId >= 10000) {
-            UniversalGuardOne.INSTANCE.isLibraryLoaded().observe(this, new Observer<Boolean>() {
+            mMagiskDetector.isLibraryLoaded().observe(this, new Observer<Boolean>() {
                 @Override
                 public void onChanged(Boolean isLoaded) {
                     if (isLoaded != null && isLoaded) {
-                        UniversalGuardOne.INSTANCE.startProtectingUniverse(MainActivity2.this);
-                        text1.setText(UniversalGuardOne.INSTANCE.detectFrida()+"\n"+String.valueOf(UniversalGuardOne.INSTANCE.getHaveSu())+"\n "+ String.valueOf(UniversalGuardOne.INSTANCE.getHaveMagicMount())+"\n "+String.valueOf(UniversalGuardOne.INSTANCE.getHaveMagiskHide()));
+                        mMagiskDetector.startProtectingUniverse(MainActivity2.this);
+                        text1.setText(mMagiskDetector.detectFrida()+"\n"+String.valueOf(mMagiskDetector.getHaveSu())+"\n "+ String.valueOf(mMagiskDetector.getHaveMagicMount())+"\n "+String.valueOf(mMagiskDetector.getHaveMagiskHide()));
 
                         // The library is loaded, you can update UI or perform other actions
                     } else {
