@@ -6,38 +6,63 @@ import android.os.Looper
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class UniversalGuardOne {
 //    companion object {
     private val _isLibraryLoaded = MutableLiveData<Boolean>()
     val isLibraryLoaded: LiveData<Boolean> get() = _isLibraryLoaded
 
-        init {
-            GlobalScope.launch {
-                loadLibrary()
-            }
-//            GlobalScope.launch {
-//                try {
-//                    loadLibrary()
-////                    if (isLibraryLoaded) {
-////                        executeMethod()
-////                    }
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//            }
-        }
+    fun loadLibraryAndExecuteMethod(context: Context?) {
+        GlobalScope.launch(Dispatchers.IO) {
+            // Load the library in the background
+            val islibraryLoaded = loadLibrary()
 
-        private fun loadLibrary() {
-            try {
-                System.loadLibrary("native-lib")
-                _isLibraryLoaded.postValue(true)
-            } catch (e: UnsatisfiedLinkError) {
-                _isLibraryLoaded.postValue(false)
+            // Check if the library is loaded
+            if (islibraryLoaded) {
+                // Execute your method
+                withContext(Dispatchers.Main) {
+                    startProtectingUniverse(context)
+                }
             }
         }
+    }
+    suspend fun loadLibrary(): Boolean {
+        return try {
+            System.loadLibrary("native-lib")
+            true
+        } catch (e: UnsatisfiedLinkError) {
+            e.printStackTrace()
+            false
+        }
+    }
+//        init {
+//            GlobalScope.launch {
+//                loadLibrary()
+//            }
+////            GlobalScope.launch {
+////                try {
+////                    loadLibrary()
+//////                    if (isLibraryLoaded) {
+//////                        executeMethod()
+//////                    }
+////                } catch (e: Exception) {
+////                    e.printStackTrace()
+////                }
+////            }
+//        }
+//
+//        private fun loadLibrary() {
+//            try {
+//                System.loadLibrary("native-lib")
+//                _isLibraryLoaded.postValue(true)
+//            } catch (e: UnsatisfiedLinkError) {
+//                _isLibraryLoaded.postValue(false)
+//            }
+//        }
 
 
         fun startProtectingUniverse(context: Context?): Boolean {
@@ -62,8 +87,10 @@ class UniversalGuardOne {
                     return true
                 }
             } catch (e: Throwable) {
+                Toast.makeText(context, "Frida Magisk not Detect", Toast.LENGTH_LONG).show()
                 return false
             }
+            Toast.makeText(context, "Frida Magisk not Detect", Toast.LENGTH_LONG).show()
             return false
         }
 

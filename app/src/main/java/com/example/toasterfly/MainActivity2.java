@@ -23,22 +23,24 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         UniversalGuardOne mMagiskDetector = new UniversalGuardOne();
         text1 = this.findViewById(R.id.textv1);
+
 //        Log.e("frida==>", String.valueOf(mMagiskDetector.startProtectingUniverse()));
         int appId = Os.getuid() % 100000;
         if (appId >= 10000) {
-            mMagiskDetector.isLibraryLoaded().observe(this, new Observer<Boolean>() {
-                @Override
-                public void onChanged(Boolean isLoaded) {
-                    if (isLoaded != null && isLoaded) {
-                        mMagiskDetector.startProtectingUniverse(MainActivity2.this);
-                        text1.setText(mMagiskDetector.detectFrida()+"\n"+String.valueOf(mMagiskDetector.getHaveSu())+"\n "+ String.valueOf(mMagiskDetector.getHaveMagicMount())+"\n "+String.valueOf(mMagiskDetector.getHaveMagiskHide()));
-
-                        // The library is loaded, you can update UI or perform other actions
-                    } else {
-                        // Handle the case where the library failed to load
-                    }
-                }
-            });
+            mMagiskDetector.loadLibraryAndExecuteMethod(MainActivity2.this);
+//            mMagiskDetector.isLibraryLoaded().observe(this, new Observer<Boolean>() {
+//                @Override
+//                public void onChanged(Boolean isLoaded) {
+//                    if (isLoaded != null && isLoaded) {
+//                        mMagiskDetector.startProtectingUniverse(MainActivity2.this);
+//                        text1.setText(mMagiskDetector.detectFrida()+"\n"+String.valueOf(mMagiskDetector.getHaveSu())+"\n "+ String.valueOf(mMagiskDetector.getHaveMagicMount())+"\n "+String.valueOf(mMagiskDetector.getHaveMagiskHide()));
+//
+//                        // The library is loaded, you can update UI or perform other actions
+//                    } else {
+//                        // Handle the case where the library failed to load
+//                    }
+//                }
+//            });
 //            if (UniversalGuardOne.Companion.isLibraryLoaded()) {
 //                UniversalGuardOne.Companion.startProtectingUniverse(MainActivity2.this);
 //                text1.setText(UniversalGuardOne.Companion.detectFrida()+"\n"+String.valueOf(UniversalGuardOne.Companion.getHaveSu())+"\n "+ String.valueOf(UniversalGuardOne.Companion.getHaveMagicMount())+"\n "+String.valueOf(UniversalGuardOne.Companion.getHaveMagiskHide()));

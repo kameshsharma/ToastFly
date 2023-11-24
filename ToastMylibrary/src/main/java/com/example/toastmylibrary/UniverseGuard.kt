@@ -6,25 +6,47 @@ import android.os.Looper
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
- class UniverseGuard {
+class UniverseGuard {
     private val _isLibraryLoaded = MutableLiveData<Boolean>()
     val isLibraryLoaded: LiveData<Boolean> get() = _isLibraryLoaded
-    init {
-        GlobalScope.launch {
-            loadLibrary()
-        }
-    }
-    private fun loadLibrary() {
-        try {
-            System.loadLibrary("native-lib")
-            _isLibraryLoaded.postValue(true)
-        } catch (e: UnsatisfiedLinkError) {
-            _isLibraryLoaded.postValue(false)
-        }
-    }
+     private var isLibraryLoadedOne = false
+     fun loadLibraryAndExecuteMethod(context: Context?) {
+         GlobalScope.launch(Dispatchers.IO) {
+             // Load the library in the background
+             val libraryLoaded = loadLibrary()
+
+             // Check if the library is loaded
+             if (libraryLoaded) {
+                 // Execute your method
+                 withContext(Dispatchers.Main) {
+                     startProtectingUniverse(context)
+                 }
+             }
+         }
+     }
+//    private fun loadLibrary() {
+//        try {
+//            System.loadLibrary("native-lib")
+//            isLibraryLoadedOne = true
+//            _isLibraryLoaded.postValue(true)
+//        } catch (e: UnsatisfiedLinkError) {
+//            _isLibraryLoaded.postValue(false)
+//        }
+//    }
+     suspend fun loadLibrary(): Boolean {
+         return try {
+             System.loadLibrary("native-lib")
+             true
+         } catch (e: UnsatisfiedLinkError) {
+             e.printStackTrace()
+             false
+         }
+     }
     fun startProtectingUniverse(context: Context?): Boolean {
         try {
             if (detectFrida()) {
